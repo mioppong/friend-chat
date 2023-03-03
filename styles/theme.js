@@ -11,6 +11,7 @@ export const theme = {
     blue: "#0000ff",
     textColor: "#fafafa",
     medGrey: "#8d8d8d",
+    blue: "#0098fe",
   },
   fonts: {
     regular: "InstagramSans-Regular",

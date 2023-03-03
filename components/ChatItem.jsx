@@ -1,7 +1,7 @@
+import { Feather } from "@expo/vector-icons";
 import React, { useState } from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { theme } from "../styles/theme";
-
 const ChatItem = () => {
   const [name, setName] = useState("its_oppong");
   const [messages, setMessages] = useState([
@@ -12,20 +12,32 @@ const ChatItem = () => {
   ]);
   const [user, setUser] = useState(null);
   const [image, setImage] = useState(
-    "https://scontent-ord5-1.cdninstagram.com/v/t51.2885-19/326041774_146436528214449_2052006328459241842_n.jpg?stp=dst-jpg_s320x320&_nc_ht=scontent-ord5-1.cdninstagram.com&_nc_cat=109&_nc_ohc=LrSu0_rcwCgAX-mmBG0&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AfBAxj2WkuiBeI7octGszzp25_bzQ0gm82K2_PK5ehEiSA&oe=640623DD&_nc_sid=8fd12b"
+    "https://pbs.twimg.com/profile_images/1571339659392720896/bK5vQazY_400x400.jpg"
   );
   const [unread, setUnread] = useState(false);
 
   return (
-    <View style={styles.container}>
-      <Image source={{ uri: image }} style={styles.image} />
-      <View style={{ flex: 1, marginLeft: theme.spacing.small }}>
-        <Text style={styles.nameStyle}>{name}</Text>
-        <Text style={styles.messageStyle}>
-          {messages[messages.length - 1]?.message} . {"6h"}
-        </Text>
+    <TouchableOpacity onPress={() => console.log("chat")}>
+      <View style={styles.container}>
+        <Image source={{ uri: image }} style={styles.image} />
+        <View style={{ flex: 1, marginLeft: theme.spacing.medium }}>
+          <Text style={styles.nameStyle}>{name}</Text>
+          <Text style={styles.messageStyle}>
+            {messages[messages.length - 1]?.message} {"6h"}
+          </Text>
+        </View>
+        <View
+          style={{
+            height: 8,
+            width: 8,
+            backgroundColor: theme.colors.blue,
+            borderRadius: 100,
+            marginRight: theme.spacing.medium,
+          }}
+        />
+        <Feather name="camera" size={24} color="white" />
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -37,12 +49,12 @@ const styles = StyleSheet.create({
     height: 100,
     width: "100%",
     backgroundColor: theme.colors.black,
-    marginVertical: theme.spacing.small,
+
     alignItems: "center",
   },
   image: {
-    height: 80,
-    width: 80,
+    height: 70,
+    width: 70,
     borderRadius: 1000,
   },
   nameStyle: {

@@ -2,6 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import {
   FlatList,
+  Image,
   ScrollView,
   StyleSheet,
   Text,
@@ -37,31 +38,44 @@ const Messages = () => {
 
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.searchContainer}>
-          <Ionicons name="search" size={20} color="white" />
-          <TextInput placeholder="Search" style={styles.textInputStyle} />
+          <Ionicons name="search" size={20} color={theme.colors.medGrey} />
+          <TextInput
+            placeholder="Search"
+            style={styles.textInputStyle}
+            placeholderTextColor={theme.colors.medGrey}
+          />
         </View>
 
         <FlatList
           data={arr}
           contentContainerStyle={{
             marginVertical: theme.spacing.large,
-            backgroundColor: "blue",
           }}
           renderItem={({ item, index }) => {
             return (
-              <View
-                key={index}
-                style={{
-                  height: 100,
-                  width: 100,
-                  borderRadius: 1000,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  backgroundColor: "white",
-                  margin: theme.spacing.small,
-                }}
-              >
-                <Text>{item}</Text>
+              <View style={{ alignItems: "center" }}>
+                <Image
+                  key={index}
+                  source={{ uri: "https://picsum.photos/200/300" }}
+                  style={{
+                    height: 100,
+                    width: 100,
+                    borderRadius: 1000,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    backgroundColor: "white",
+                    margin: theme.spacing.small,
+                  }}
+                />
+
+                <Text
+                  style={{
+                    fontFamily: theme.fonts.regular,
+                    color: theme.colors.textColor,
+                  }}
+                >
+                  {"heMe llo "}
+                </Text>
               </View>
             );
           }}
@@ -111,13 +125,11 @@ const styles = StyleSheet.create({
   },
 
   container: {
-    backgroundColor: "red",
     padding: 10,
   },
   header: {
     width: "100%",
     flexDirection: "row",
-    backgroundColor: "white",
   },
   headerTitle: {
     fontSize: 20,
@@ -128,13 +140,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginRight: "auto",
     alignItems: "center",
-    backgroundColor: "blue",
   },
   headerRight: {
     flexDirection: "row",
     marginLeft: "auto",
     alignItems: "center",
-    backgroundColor: "green",
   },
   messagesTitle: {
     fontSize: theme.fontSizes.large,
