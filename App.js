@@ -1,3 +1,6 @@
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+
 import { useFonts } from "expo-font";
 import {
   ActivityIndicator,
@@ -5,8 +8,13 @@ import {
   StyleSheet,
   View,
 } from "react-native";
+import ChatScreen from "./screens/ChatScreen";
+import ChatScreen2 from "./screens/ChatScreen2";
+
 import Messages from "./screens/Messages";
 import { theme } from "./styles/theme";
+
+const Stack = createStackNavigator();
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -31,7 +39,17 @@ export default function App() {
   }
   return (
     <SafeAreaView style={styles.container}>
-      <Messages />
+      <NavigationContainer theme={theme}>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}
+        >
+          <Stack.Screen name="Messages" component={Messages} />
+          <Stack.Screen name="Chat" component={ChatScreen} />
+          <Stack.Screen name="Chat2" component={ChatScreen2} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </SafeAreaView>
   );
 }

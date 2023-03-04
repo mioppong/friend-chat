@@ -1,9 +1,11 @@
 import { Feather } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { theme } from "../styles/theme";
-const ChatItem = () => {
+const ChatItem = ({ key }) => {
   const [name, setName] = useState("its_oppong");
+  const navigation = useNavigation();
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -15,9 +17,15 @@ const ChatItem = () => {
     "https://pbs.twimg.com/profile_images/1571339659392720896/bK5vQazY_400x400.jpg"
   );
   const [unread, setUnread] = useState(false);
-
+  const navigateToChat = () => {
+    if (key % 2 === 0) {
+      navigation.navigate("Chat");
+    } else {
+      navigation.navigate("Chat2");
+    }
+  };
   return (
-    <TouchableOpacity onPress={() => console.log("chat")}>
+    <TouchableOpacity onPress={navigateToChat}>
       <View style={styles.container}>
         <Image source={{ uri: image }} style={styles.image} />
         <View style={{ flex: 1, marginLeft: theme.spacing.medium }}>

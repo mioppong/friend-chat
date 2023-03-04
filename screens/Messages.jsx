@@ -1,4 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import {
   FlatList,
@@ -13,8 +14,10 @@ import ChatItem from "../components/ChatItem";
 import CreateIcon from "../components/icons/CreateIcon";
 import { theme } from "../styles/theme";
 
-const Messages = () => {
+const Messages = (props) => {
   const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>

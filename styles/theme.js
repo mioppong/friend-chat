@@ -12,6 +12,7 @@ export const theme = {
     textColor: "#fafafa",
     medGrey: "#8d8d8d",
     blue: "#0098fe",
+    purpleBlue: "#6b3fff",
   },
   fonts: {
     regular: "InstagramSans-Regular",
@@ -22,6 +23,10 @@ export const theme = {
     small: 12,
     medium: 14,
     large: 16,
+    large2: 18,
+    large3: 20,
+    large4: 22,
+    large5: 24,
   },
   spacing: {
     small: 8,
