@@ -1,12 +1,19 @@
 import { Entypo, Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { theme } from "../styles/theme";
 
 export const ChatHeader = (props) => {
+  const navigation = useNavigation();
   return (
     <View style={styles.header}>
-      <Entypo name="chevron-thin-left" size={24} color="white" />
+      <Entypo
+        name="chevron-thin-left"
+        size={24}
+        color="white"
+        onPress={() => navigation.goBack()}
+      />
       <Image
         source={{ uri: "https://placeimg.com/140/140/any" }}
         style={{

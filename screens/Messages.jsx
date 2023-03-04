@@ -1,9 +1,10 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import React, { useState } from "react";
 import {
   FlatList,
   Image,
+  RefreshControl,
   ScrollView,
   StyleSheet,
   Text,
@@ -17,7 +18,18 @@ import { theme } from "../styles/theme";
 const Messages = (props) => {
   const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const navigation = useNavigation();
+  const [refreshing, setRefreshing] = useState(false);
 
+  const wait = (timeout) => {
+    return new Promise((resolve) => {
+      setTimeout(resolve, timeout);
+    });
+  };
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -39,7 +51,16 @@ const Messages = (props) => {
         </View>
       </View>
 
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            tintColor="white"
+          />
+        }
+      >
         <View style={styles.searchContainer}>
           <Ionicons name="search" size={20} color={theme.colors.medGrey} />
           <TextInput
