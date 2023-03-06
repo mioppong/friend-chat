@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { GiftedChat } from "react-native-gifted-chat";
+import { GiftedChat, Message } from "react-native-gifted-chat";
 import ChatHeader from "../components/ChatHeader";
 import { renderActions } from "../components/renderActions";
 import { renderBubble } from "../components/renderBubble";
@@ -9,7 +9,7 @@ import { renderComposer } from "../components/renderComposer";
 import { renderInputToolbar } from "../components/renderInputToolBar";
 import { renderSend } from "../components/renderSend";
 import { theme } from "../styles/theme";
-const API = "http://localhost:5000";
+const API = "https://server-dot-friend-chat-3033a.uc.r.appspot.com";
 const ChatScreen2 = () => {
   const [allMessages, setAllMessages] = useState([]);
   const [text, setText] = useState(null);
@@ -28,6 +28,21 @@ const ChatScreen2 = () => {
     return prompt;
   };
 
+  const renderMessage = (props) => {
+    return (
+      <Message
+        {...props}
+        linkStyle={{
+          right: {
+            color: theme.colors.blue,
+          },
+          left: {
+            color: theme.colors.blue,
+          },
+        }}
+      />
+    );
+  };
   const onSend = async (messages = []) => {
     const combinedMessages = GiftedChat.append(allMessages, messages);
     setAllMessages((previousMessages) =>
@@ -82,6 +97,7 @@ const ChatScreen2 = () => {
         }}
         renderInputToolbar={renderInputToolbar}
         renderBubble={renderBubble}
+        renderMessage={renderMessage}
         renderActions={renderActions}
         renderSend={renderSend}
         onInputTextChanged={(text) => {
