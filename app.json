@@ -11,12 +11,11 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.oppongstudios.friendchat"
+      "bundleIdentifier": "com.oppongstudios.friendchat",
+      "buildNumber": "2"
     },
     "android": {
       "adaptiveIcon": {
