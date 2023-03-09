@@ -36,7 +36,7 @@ const Messages = (props) => {
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.headerLeft}>
-          <Ionicons name="chevron-back" size={30} color={theme.colors.white} />
+          <Ionicons name="chevron-back" size={35} color={theme.colors.white} />
           <Text style={styles.headerTitle}>its_oppong</Text>
           <View style={styles.badge}>
             <Text style={styles.badgeText}>2</Text>
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   headerTitle: {
-    fontSize: 20,
+    fontSize: 30,
     fontFamily: theme.fonts.bold,
     color: theme.colors.white,
   },
