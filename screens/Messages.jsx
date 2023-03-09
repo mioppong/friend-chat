@@ -14,6 +14,7 @@ import {
 import ChatItem from "../components/ChatItem";
 import CreateIcon from "../components/icons/CreateIcon";
 import { theme } from "../styles/theme";
+import { fakeUsers } from "../util/constants";
 
 const Messages = (props) => {
   const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -30,6 +31,7 @@ const Messages = (props) => {
     setRefreshing(true);
     wait(2000).then(() => setRefreshing(false));
   }, []);
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -71,13 +73,21 @@ const Messages = (props) => {
         </View>
 
         <FlatList
-          data={arr}
+          data={fakeUsers}
           contentContainerStyle={{
             marginVertical: theme.spacing.large,
           }}
           renderItem={({ item, index }) => {
             return (
               <View style={{ alignItems: "center" }}>
+                <View
+                  style={{
+                    ...styles.badgeUser,
+                    bottom: index % 2 == 0 ? 25 : null,
+                  }}
+                >
+                  <Text style={styles.badgeUserMessage}>{item.message}</Text>
+                </View>
                 <Image
                   key={index}
                   source={{ uri: "https://picsum.photos/200/300" }}
@@ -98,7 +108,7 @@ const Messages = (props) => {
                     color: theme.colors.textColor,
                   }}
                 >
-                  {"heMe llo "}
+                  {item.name}
                 </Text>
               </View>
             );
@@ -121,8 +131,8 @@ const Messages = (props) => {
           <Text style={styles.requestsTitle}>Requests</Text>
         </View>
 
-        {arr.map((item, index) => {
-          return <ChatItem key={index} />;
+        {fakeUsers.map((item, index) => {
+          return <ChatItem key={index} item={item} />;
         })}
         <View style={{ height: 100 }} />
       </ScrollView>
@@ -141,6 +151,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginLeft: 5,
+  },
+  badgeUser: {
+    backgroundColor: theme.colors.darkGrey,
+    borderRadius: 50,
+    padding: 5,
+    position: "absolute",
+    zIndex: 1,
+  },
+  badgeUserMessage: {
+    color: theme.colors.textColor,
+    fontSize: theme.fontSizes.small,
   },
   badgeText: {
     color: theme.colors.white,
