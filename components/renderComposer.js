@@ -9,9 +9,12 @@ export const renderComposer = (props) => {
       textInputStyle={{
         color: "white",
         fontSize: theme.fontSizes.large,
-        fontFamily: theme.fonts.regular,
+        // fontFamily: theme.fonts.regular,
         justifyContent: "center",
         alignItems: "center",
+        textAlignVertical: "center",
+        alignSelf: "center",
+        marginTop: "3%",
       }}
       textInputProps={{
         multiline: true,

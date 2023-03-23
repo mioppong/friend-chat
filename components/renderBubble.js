@@ -9,11 +9,11 @@ export const renderBubble = (props) => {
       textStyle={{
         right: {
           color: "white",
-          fontFamily: theme.fonts.regular,
+          // fontFamily: theme.fonts.regular,
         },
         left: {
           color: "white",
-          fontFamily: theme.fonts.regular,
+          // fontFamily: theme.fonts.regular,
         },
       }}
       wrapperStyle={{

@@ -28,6 +28,7 @@ export const ChatHeader = (props) => {
           style={{
             color: "white",
             fontFamily: theme.fonts.bold,
+            textTransform: "capitalize",
             fontSize: theme.fontSizes.large2,
           }}
         >
