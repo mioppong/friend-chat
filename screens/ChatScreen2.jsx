@@ -12,20 +12,26 @@ import { renderInputToolbar } from "../components/renderInputToolBar";
 import { renderSend } from "../components/renderSend";
 import { theme } from "../styles/theme";
 import { removeNewLine } from "../util";
-const API = "https://server-dot-friend-chat-3033a.uc.r.appspot.com";
-const ChatScreen2 = () => {
+// const API = "https://server-dot-friend-chat-3033a.uc.r.appspot.com";
+const API = "http://localhost:2000";
+const ChatScreen2 = (props) => {
+  console.log(props.route.params.userData);
+  const userData = props.route.params.userData;
+  const systemMessage = {
+    role: "system",
+    content: userData.context,
+  };
   const [allMessages, setAllMessages] = useState([]);
   const [text, setText] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const createPrompt = (messages) => {
-    let prompt = "";
-
+  const createNewPrompt = (messages) => {
+    let prompt = [systemMessage];
     messages.reverse().forEach((message) => {
       if (message.user._id === 1) {
-        prompt += `You: ${message.text}\nBot: `;
+        prompt.push({ role: "user", content: message.text });
       } else {
-        prompt += `${message.text}\n`;
+        prompt.push({ role: "assistant", content: message.text });
       }
     });
     return prompt;
@@ -48,6 +54,7 @@ const ChatScreen2 = () => {
   };
   const onSend = async (messages = []) => {
     const combinedMessages = GiftedChat.append(allMessages, messages);
+
     setAllMessages((previousMessages) =>
       GiftedChat.append(previousMessages, messages)
     );
@@ -56,18 +63,13 @@ const ChatScreen2 = () => {
     combinedMessages.forEach((message, index) => {
       console.log(index, message.text);
     });
-    const prompt = createPrompt(combinedMessages);
+    const prompt = createNewPrompt(combinedMessages);
+    console.log("prompt", prompt);
 
     try {
       const res = await axios.post(`${API}/api/openai`, {
-        prompt: prompt,
+        prompt: JSON.stringify(prompt),
       });
-
-      console.log("response", res.data.data);
-
-      // if a message includes a \n remove it
-      const newMessage = removeNewLine(res.data.data);
-      console.log("newMessage", JSON.stringify(newMessage));
 
       setAllMessages((previousMessages) =>
         GiftedChat.append(previousMessages, [
@@ -75,23 +77,34 @@ const ChatScreen2 = () => {
             _id: Math.random(),
             text: removeNewLine(JSON.stringify(res.data.data)),
             createdAt: new Date(),
-            image: "https://placeimg.com/140/140/any",
+            image: userData.image,
             user: {
               _id: 2,
-              avatar: "https://placeimg.com/140/140/any",
+              avatar: userData.image,
             },
           },
         ])
       );
+
+      setLoading(false);
     } catch (error) {
-      console.log("full");
+      console.log("fukk");
     }
 
     setLoading(false);
   };
-  const typingIndicatorProps = {
-    backgroundColor: "blue",
+
+  const saveLastMessage = async (messages) => {
+    try {
+      const res = await axios.post(`${API}/api/messages`, {
+        messages: messages,
+      });
+      console.log(res);
+    } catch (error) {
+      console.log("fukk");
+    }
   };
+
   const renderTypingIndicator = () => (
     <TypingIndicator
       style={{ backgroundColor: "blue", color: "blue" }}
@@ -101,20 +114,12 @@ const ChatScreen2 = () => {
   );
   return (
     <View style={{ flex: 1, backgroundColor: theme.colors.black }}>
-      <ChatHeader />
+      <ChatHeader userData={userData} />
       <GiftedChat
         renderMessageImage={() => null}
         renderTime={() => null}
         messages={allMessages}
         isTyping={loading}
-        // renderLoading={() => (
-        //   <TypingIndicator
-        //     isTyping={true}
-        //     style={{ backgroundColor: theme.colors.red }}
-        //     containerStyle={{ backgroundColor: theme.colors.red }}
-        //   />
-        //   // <View style={{ backgroundColor: theme.colors.red }} />
-        // )}
         renderFooter={renderTypingIndicator}
         placeholder="Message..."
         renderComposer={renderComposer}

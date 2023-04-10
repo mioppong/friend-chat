@@ -14,7 +14,7 @@ const ChatItem = (props) => {
       message: "Hello",
     },
   ]);
-  console.log(item);
+
   const [user, setUser] = useState(null);
   const [image, setImage] = useState(
     "https://pbs.twimg.com/profile_images/1571339659392720896/bK5vQazY_400x400.jpg"
@@ -22,54 +22,33 @@ const ChatItem = (props) => {
 
   const [unread, setUnread] = useState(false);
   const navigateToChat = () => {
-    navigation.navigate("Chat2");
+    navigation.navigate("Chat2", { userData: item });
   };
   return (
     <TouchableOpacity onPress={navigateToChat}>
       <View style={styles.container}>
-        <LinearGradient
-          colors={["#CA1D7E", "#E35157", "#F2703F"]}
-          start={{ x: 0.0, y: 1.0 }}
-          end={{ x: 1.0, y: 1.0 }}
+        <View
           style={{
-            height: 71,
-            width: 71,
-            padding: 10,
+            backgroundColor: "black",
+            padding: 1,
+            height: 65,
+            width: 65,
+            borderRadius: 1000,
             alignItems: "center",
             justifyContent: "center",
-            borderRadius: 82 / 2,
           }}
         >
-          <View
-            style={{
-              backgroundColor: "black",
-              padding: 1,
-              height: 65,
-              width: 65,
-              borderRadius: 1000,
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Image source={{ uri: image }} style={styles.image} />
-          </View>
-        </LinearGradient>
+          <Image source={{ uri: item.image }} style={styles.image} />
+        </View>
+
         <View style={{ flex: 1, marginLeft: theme.spacing.medium }}>
           <Text style={styles.nameStyle}>{name}</Text>
           <Text style={styles.messageStyle}>
             {messages[messages.length - 1]?.message} {"6h"}
           </Text>
         </View>
-        <View
-          style={{
-            height: 8,
-            width: 8,
-            backgroundColor: theme.colors.blue,
-            borderRadius: 100,
-            marginRight: theme.spacing.medium,
-          }}
-        />
-        <Feather name="camera" size={24} color="white" />
+
+        <Feather name="camera" size={24} color={theme.colors.medGrey} />
       </View>
     </TouchableOpacity>
   );
@@ -100,6 +79,6 @@ const styles = StyleSheet.create({
   messageStyle: {
     fontSize: theme.fontSizes.medium,
     fontFamily: theme.fonts.bold,
-    color: theme.colors.textColor,
+    color: theme.colors.medGrey,
   },
 });

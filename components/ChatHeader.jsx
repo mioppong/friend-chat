@@ -5,6 +5,7 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import { theme } from "../styles/theme";
 
 export const ChatHeader = (props) => {
+  const { userData } = props;
   const navigation = useNavigation();
   return (
     <View style={styles.header}>
@@ -15,7 +16,7 @@ export const ChatHeader = (props) => {
         onPress={() => navigation.goBack()}
       />
       <Image
-        source={{ uri: "https://placeimg.com/140/140/any" }}
+        source={{ uri: userData?.image }}
         style={{
           height: 50,
           width: 50,
@@ -32,9 +33,11 @@ export const ChatHeader = (props) => {
             fontSize: theme.fontSizes.large2,
           }}
         >
-          Oppong
+          {userData?.name}
         </Text>
-        <Text style={{ color: theme.colors.medGrey }}>its_oppong</Text>
+        <Text style={{ color: theme.colors.medGrey }}>
+          {userData?.username}
+        </Text>
       </View>
       <Ionicons
         name="call-outline"
