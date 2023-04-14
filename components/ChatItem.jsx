@@ -4,6 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { theme } from "../styles/theme";
+import VerifiedIcon from "./icons/VerifiedIcon";
 const ChatItem = (props) => {
   const { item } = props;
   const [name, setName] = useState(item.name);
@@ -42,7 +43,9 @@ const ChatItem = (props) => {
         </View>
 
         <View style={{ flex: 1, marginLeft: theme.spacing.medium }}>
-          <Text style={styles.nameStyle}>{name}</Text>
+          <Text style={styles.nameStyle}>
+            {name} <VerifiedIcon size={7} />
+          </Text>
           <Text style={styles.messageStyle}>
             {messages[messages.length - 1]?.message} {"6h"}
           </Text>

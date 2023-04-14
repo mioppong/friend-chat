@@ -3,6 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { theme } from "../styles/theme";
+import VerifiedIcon from "./icons/VerifiedIcon";
 
 export const ChatHeader = (props) => {
   const { userData } = props;
@@ -33,7 +34,7 @@ export const ChatHeader = (props) => {
             fontSize: theme.fontSizes.large2,
           }}
         >
-          {userData?.name}
+          {userData?.name} <VerifiedIcon size={18} />
         </Text>
         <Text style={{ color: theme.colors.medGrey }}>
           {userData?.username}
