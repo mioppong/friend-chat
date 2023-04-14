@@ -12,8 +12,8 @@ import { renderInputToolbar } from "../components/renderInputToolBar";
 import { renderSend } from "../components/renderSend";
 import { theme } from "../styles/theme";
 import { removeNewLine } from "../util";
-// const API = "https://server-dot-friend-chat-3033a.uc.r.appspot.com";
-const API = "http://localhost:2000";
+const API = "https://server-dot-friend-chat-3033a.uc.r.appspot.com";
+// const API = "http://localhost:2000";
 const ChatScreen2 = (props) => {
   console.log(props.route.params.userData);
   const userData = props.route.params.userData;

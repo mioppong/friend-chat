@@ -44,7 +44,7 @@ const ChatItem = (props) => {
 
         <View style={{ flex: 1, marginLeft: theme.spacing.medium }}>
           <Text style={styles.nameStyle}>
-            {name} <VerifiedIcon size={7} />
+            {name} <VerifiedIcon size={18} />
           </Text>
           <Text style={styles.messageStyle}>
             {messages[messages.length - 1]?.message} {"6h"}
