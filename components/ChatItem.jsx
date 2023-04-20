@@ -43,9 +43,11 @@ const ChatItem = (props) => {
         </View>
 
         <View style={{ flex: 1, marginLeft: theme.spacing.medium }}>
-          <Text style={styles.nameStyle}>
-            {name} <VerifiedIcon size={18} />
-          </Text>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <Text style={styles.nameStyle}>{name}</Text>
+
+            <VerifiedIcon size={18} />
+          </View>
           <Text style={styles.messageStyle}>
             {messages[messages.length - 1]?.message} {"6h"}
           </Text>
@@ -75,9 +77,12 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   nameStyle: {
+    textAlignVertical: "center",
     fontSize: theme.fontSizes.large,
     fontFamily: theme.fonts.bold,
     color: theme.colors.textColor,
+    marginRight: 2,
+    marginBottom: 2,
   },
   messageStyle: {
     fontSize: theme.fontSizes.medium,

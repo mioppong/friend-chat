@@ -23,7 +23,7 @@ export const fakeUsers = [
   },
   {
     username: "champagnepapi",
-    message: "Ayo what are you guys saying tonight",
+    message: "what are you guys saying tonight",
     image:
       "https://firebasestorage.googleapis.com/v0/b/friend-chat-3033a.appspot.com/o/profile%20pics%2Fdrake.jpg?alt=media&token=a9d77f5b-6b48-436f-97b9-154d3daf237e",
     name: "Draqe",
@@ -33,7 +33,7 @@ export const fakeUsers = [
   },
   {
     username: "megan_thee_stallion",
-    message: "I'm just here to say I'm the best",
+    message: "I know I'm the best",
     image:
       "https://firebasestorage.googleapis.com/v0/b/friend-chat-3033a.appspot.com/o/profile%20pics%2Fmegan.jpg?alt=media&token=a3f27c5c-e529-488d-9f21-d0d50f17f84b",
     name: "Megan ",
@@ -47,7 +47,7 @@ export const fakeUsers = [
     message: "40 points tonight",
     image:
       "https://firebasestorage.googleapis.com/v0/b/friend-chat-3033a.appspot.com/o/profile%20pics%2Fcurry.jpg?alt=media&token=54a23073-b69f-4249-8945-c46ad0202cab",
-    name: "Curry 🏀",
+    name: "Curry",
     context:
       "Your name is Stephen Curry, you are a great basketball player, reply as a Steph Curry",
   },
